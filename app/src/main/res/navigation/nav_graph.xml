@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tripListFragment">
+    <fragment
+        android:id="@+id/tripListFragment"
+        android:name="com.rettiwer.pl.rps.ui.TripListFragment"
+        android:label="fragment_trip_list"
+        tools:layout="@layout/fragment_trip_list" >
+        <action
+            android:id="@+id/action_tripListFragment_to_tripEventListFragment"
+            app:destination="@id/tripEventListFragment" />
+        <action
+            android:id="@+id/action_tripListFragment_to_manageTripFragment"
+            app:destination="@id/manageTripFragment"
+            app:popUpTo="@id/tripListFragment">
+            <argument
+                android:name="tripId"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/manageTripFragment"
+        android:name="com.rettiwer.pl.rps.ui.ManageTripFragment"
+        android:label="fragment_manage_trip"
+        tools:layout="@layout/fragment_manage_trip" >
+        <action
+            android:id="@+id/action_manageTripFragment_to_tripEventListFragment"
+            app:destination="@id/tripEventListFragment"
+            app:popUpTo="@id/tripListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripEventListFragment"
+        android:name="com.rettiwer.pl.rps.ui.TripEventListFragment"
+        android:label="fragment_trip_event_list"
+        tools:layout="@layout/fragment_trip_event_list" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tripEventListFragment_to_tripEventManageFragment"
+            app:destination="@id/tripEventManageFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripEventManageFragment"
+        android:name="com.rettiwer.pl.rps.ui.TripEventManageFragment"
+        android:label="fragment_trip_event_manage"
+        tools:layout="@layout/fragment_trip_event_manage" >
+        <action
+            android:id="@+id/action_tripEventManageFragment_to_tripEventListFragment"
+            app:destination="@id/tripEventListFragment"
+            app:popUpTo="@id/tripEventListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+        <argument
+            android:name="tripEventId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
